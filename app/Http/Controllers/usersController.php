@@ -58,13 +58,15 @@ class UsersController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
-            return redirect('/Front.home');
+            // Redirect to the home page after successful login
+            return redirect('/home');
         }
 
         return back()->withErrors([
             'email' => 'Incorrect email or password.',
         ]);
     }
+
 
     // Logout
     public function logout()
